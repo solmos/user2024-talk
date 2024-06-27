@@ -1,0 +1,274 @@
+---
+title: "Building large-scale simulation pipelines using targets, Git and GitHub Actions"
+subtitle: "useR! 2024 Salzburg"
+author: "Sergio Olmos"
+date: "11 July 2024"
+format:
+  revealjs:
+    mermaid:
+      theme: default
+---
+
+## About
+
+- Statistician at Sanofi
+
+- Innovative clinical trial designs and analytical methods
+
+- Large scale simulations
+
+- Software engineering best practices
+  - Program design
+  - Version control
+  - CI/CD
+  - Unit testing
+
+# Overview
+
+## Tools
+
+- {targets}
+
+- Docker
+
+- Git
+
+- GitHub Actions
+
+## Pipeline
+
+```{mermaid}
+flowchart TB
+  subgraph Local
+  dev[Pipeline development] <--> test[Small scale simulations]
+  end
+  subgraph ghr[GitHub Runner]
+  gha[GitHub Actions] --> docker[Build Docker image]
+  gha --> deploy[Deploy pipeline]
+  deploy --> publish[Publish results]
+  subgraph HPC
+  sim --> report[Render report]
+  end
+  end
+  deploy --> sim[Large scale simulations]
+  report --> publish
+  Local --> ghr
+```
+
+# {targets}
+
+## Pipeline management
+
+- Analyzes pipeline graph
+- Skips up-to-date steps
+- Orchestrates the rest
+- Automatic saving of targets
+
+## R-based
+
+``` r
+# _targets.R
+library(targets)
+tar_option_set(
+  packages = c("dplyr", "ggplot2")
+)
+
+list(
+  tar_target(
+    name = data_sim,
+    command = sim_data(reps = 100)
+  ),
+  tar_target(
+    name = model_fit,
+    command = fit_model(data_sim)
+  )
+)
+```
+
+Run entire pipeline with:
+
+``` r
+targets::tar_make()
+```
+
+## Parallelization via {crew}
+
+``` r
+# _targets.R
+library(crew)
+tar_option_set(controller = crew_controller_local(workers = 30))
+```
+
+- Dynamic branching
+  - {tarchetypes}
+
+- Distributed computing:
+  - Local
+  - SGE
+  - SLURM
+  - AWS Batch
+
+
+## {config}
+
+Seamless testing-deployment workflow
+
+`config.yaml`
+
+``` yaml
+default:
+  sims: 100
+  workers: 2
+deployment:
+  sims: 10000
+  workers: 30
+```
+
+`_targets.R`
+
+``` r
+n_sims <- config::get("sims")
+n_workers <- config::get("workers")
+tar_option_set(crew_controller_local(workers = n_workers))
+list(
+  tar_target(data_sim, sim_data(reps = n_sims))
+)
+```
+
+# Cloud computing
+
+## Cloud computing infrastructure
+
+On-demand AWS EC2 instances:
+
+- Launch instance/cluster via API
+
+- Custom Docker image
+
+- Access to S3 buckets for persistent storage
+
+- Choose HPC scheduler: SLURM, SGE, Kubernetes
+
+- Live pipeline logs
+
+# Docker
+
+## Install all pipeline requirements
+
+Production environment:
+
+- Base images: [Rocker Project]()
+- System dependencies
+- R
+- R packages
+
+# GitHub Actions
+
+## What are GitHub Actions?
+
+- Runners:
+  - GitHub-shared
+  - Self-hosted
+- Workflow automation: Continuous Integration and Continous Deployment (CI/CD)
+- Traceability
+- Collaboration
+
+# Workflow
+
+## Before CI/CD
+
+- Running costly cloud instance for long periods of time (mostly iddle)
+- Interactive testing in the command line
+- Manually moving files
+- Non-traceability of results
+
+## After CI/CD
+
+:::: {.columns}
+
+::: {.column}
+
+**Local development**:
+
+- Free
+- Offline
+- Your development environment
+  - Desktop IDE
+  - Git client
+- Interactive testing
+
+:::
+
+::: {.column}
+
+**Automated pipeline deployment**:
+
+- No manual file movement
+
+- Traceable
+
+- Efficient use of costly cloud computing
+
+:::
+
+::::
+
+## Build image
+
+- Trigger workflow only when changes in:
+  - `Dockerfile`
+  - Dependencies (e.g., `renv.lock`)
+  
+- Build image in GitHub runners
+
+- Push image to cloud computing registry
+
+## Deploy pipeline
+
+- Custom trigger:
+  - `git push <deploy-branch>`
+  - `git tag`
+  
+- Custom GitHub Action:
+  - Specify Docker image
+  - Specify HPC specs
+  - Automatated `git checkout`
+  - Pipeline execution command
+
+## Deployment example
+
+```yaml
+name: Deploy pipeline
+on:
+  push:
+    branches: deploy
+jobs:
+  deploy-pipeline:
+    runs-on: self-hosted
+    steps:
+      - name: Run pipeline
+        uses: org/custom-github-action/run-pipeline@main
+        with:
+          token: ${{ secrets.API_TOKEN }}
+          docker-image: user/custom-docker-image:latest
+          instance-type: r6i.32xlarge
+          command: sh _deploy.sh # targets::tar_make()
+```
+
+## Publish results
+
+After deployment workflow:
+
+- targets pipeline includes Quarto/RMarkdown documents reporting results
+
+``` r
+tarchetypes::tar_quarto(report, "report.qmd")
+```
+
+- Publish rendered HTML to GitHub Pages/Posit Connect
+- See results
+- Share with collaborators
+
+# Questions?
+
+# Thanks!
