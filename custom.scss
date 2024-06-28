@@ -1,0 +1,20 @@
+/*-- scss:customized --*/
+
+// fonts
+$font-family-sans-serif: "Sanofi Sans", "Palatino Linotype", "Book Antiqua", Palatino, FreeSerif, serif !default;
+
+// colors
+$body-bg: #ffffff !default;
+$body-color: #2e2e2e !default;
+$link-color: #7a00e6 !default;
+$selection-bg: #f6c243 !default;
+
+// headings
+$presentation-heading-font: "Sanofi Sans", "Palatino Linotype", "Book Antiqua", Palatino, FreeSerif, serif !default;
+$presentation-heading-color: #23004c !default;
+
+/*-- scss:rules --*/
+
+.reveal a {
+  line-height: 1.3em;
+}
