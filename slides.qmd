@@ -1,27 +1,42 @@
 ---
-title: "Building large-scale simulation pipelines using targets, Git and GitHub Actions"
+title: "Building simulation pipelines using targets, Git and GitHub Actions"
 subtitle: "useR! 2024 Salzburg"
 author: "Sergio Olmos"
 date: "11 July 2024"
 format:
   revealjs:
+    slide-number: true
+    logo: sanofi.svg
+    theme: [default, custom.scss]
     mermaid:
       theme: default
 ---
 
 ## About
 
+:::: {.columns}
+
+::: {.column width="60%"}
 - Statistician at Sanofi
+
+- Member of [openstatsware](https://www.openstatsware.org)
 
 - Innovative clinical trial designs and analytical methods
 
 - Large scale simulations
 
 - Software engineering best practices
-  - Program design
-  - Version control
-  - CI/CD
-  - Unit testing
+
+:::
+
+::: {.column width="40%"}
+
+![](sanofi.svg)
+
+![](openstatsware-hex.svg){.absolute left="730" width="200"}
+:::
+
+::::
 
 # Overview
 
@@ -109,9 +124,7 @@ tar_option_set(controller = crew_controller_local(workers = 30))
   - AWS Batch
 
 
-## {config}
-
-Seamless testing-deployment workflow
+## Seamless testing-deployment workflow via {config}
 
 `config.yaml`
 
@@ -137,9 +150,9 @@ list(
 
 # Cloud computing
 
-## Cloud computing infrastructure
+## Cloud computing platform
 
-On-demand AWS EC2 instances:
+- On-demand AWS EC2 instances
 
 - Launch instance/cluster via API
 
@@ -166,10 +179,10 @@ Production environment:
 
 ## What are GitHub Actions?
 
+- Workflow automation: CI/CD
 - Runners:
   - GitHub-shared
   - Self-hosted
-- Workflow automation: Continuous Integration and Continous Deployment (CI/CD)
 - Traceability
 - Collaboration
 
@@ -177,9 +190,10 @@ Production environment:
 
 ## Before CI/CD
 
+- Manually moving files
+- Working in ineffient mounted folders
 - Running costly cloud instance for long periods of time (mostly iddle)
 - Interactive testing in the command line
-- Manually moving files
 - Non-traceability of results
 
 ## After CI/CD
