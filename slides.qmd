@@ -285,4 +285,16 @@ tarchetypes::tar_quarto(report, "report.qmd")
 
 # Questions?
 
+{{< fa brands github >}} [`solmos`](https://github.com/solmos)
+
+{{< fa brands linkedin >}} [`sergio-olmos`](https://www.linkedin.com/in/sergio-olmos)
+
+{{< fa brands mastodon >}} [`@solmos@fosstodon.org`](https://fosstodon.org/@solmos)
+
+::: footer
+
+Slides: [`https://github.com/solmos/user2024-talk`](https://github.com/solmos/user2024-talk)
+
+:::
+
 # Thanks!
