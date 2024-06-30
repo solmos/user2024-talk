@@ -1,5 +1,5 @@
 ---
-title: "Building simulation pipelines using targets, Git and GitHub Actions"
+title: "Building large-scale simulation pipelines using targets, Git and GitHub Actions"
 subtitle: "useR! 2024 Salzburg"
 author: "Sergio Olmos"
 date: "11 July 2024"
