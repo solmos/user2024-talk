@@ -79,6 +79,8 @@ flowchart TB
 - Orchestrates the rest
 - Automatic saving of targets
 
+![](targets-pipeline-simple.png)
+
 ## R-based
 
 ``` r
@@ -123,6 +125,7 @@ tar_option_set(controller = crew_controller_local(workers = 30))
   - SLURM
   - AWS Batch
 
+![](targets-pipeline-complex.png){.absolute height="500px" left="600" top="200"}
 
 ## Seamless testing-deployment workflow via {config}
 
@@ -170,9 +173,9 @@ list(
 
 Production environment:
 
-- Base images: [Rocker Project]()
+- Base images: [Rocker Project](https://rocker-project.org)
 - System dependencies
-- R
+- R version
 - R packages
 
 # GitHub Actions
@@ -283,7 +286,9 @@ tarchetypes::tar_quarto(report, "report.qmd")
 - See results
 - Share with collaborators
 
-# Questions?
+# Questions? {.smaller}
+
+{{< fa solid envelope >}} [`sergio.olmos.pardo@gmail.com`](mailto:sergio.olmos.pardo@gmail.com)
 
 {{< fa brands github >}} [`solmos`](https://github.com/solmos)
 
@@ -291,10 +296,9 @@ tarchetypes::tar_quarto(report, "report.qmd")
 
 {{< fa brands mastodon >}} [`@solmos@fosstodon.org`](https://fosstodon.org/@solmos)
 
+
 ::: footer
 
 Slides: [`https://github.com/solmos/user2024-talk`](https://github.com/solmos/user2024-talk)
 
 :::
-
-# Thanks!
