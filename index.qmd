@@ -19,13 +19,13 @@ format:
 ::: {.column width="60%"}
 - Statistician at Sanofi
 
-- Member of [openstatsware](https://www.openstatsware.org)
-
 - Innovative clinical trial designs and analytical methods
 
 - Large scale simulations
 
 - Software engineering best practices
+
+- Member of [openstatsware](https://www.openstatsware.org)
 
 :::
 
