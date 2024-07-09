@@ -1,0 +1,114 @@
+[
+  {
+    "objectID": "index.html#about",
+    "href": "index.html#about",
+    "title": "Building large-scale simulation pipelines using targets, Git and GitHub Actions",
+    "section": "About",
+    "text": "About\n\n\n\nStatistician at Sanofi\nInnovative clinical trial designs and analytical methods\nLarge scale simulations\nSoftware engineering best practices\nMember of openstatsware"
+  },
+  {
+    "objectID": "index.html#tools",
+    "href": "index.html#tools",
+    "title": "Building large-scale simulation pipelines using targets, Git and GitHub Actions",
+    "section": "Tools",
+    "text": "Tools\n\n{targets}\nDocker\nGit\nGitHub Actions"
+  },
+  {
+    "objectID": "index.html#pipeline",
+    "href": "index.html#pipeline",
+    "title": "Building large-scale simulation pipelines using targets, Git and GitHub Actions",
+    "section": "Pipeline",
+    "text": "Pipeline\n\n\n\n\n\nflowchart TB\n  subgraph Local\n  dev[Pipeline development] &lt;--&gt; test[Small scale simulations]\n  end\n  subgraph ghr[GitHub Runner]\n  gha[GitHub Actions] --&gt; docker[Build Docker image]\n  gha --&gt; deploy[Deploy pipeline]\n  deploy --&gt; publish[Publish results]\n  subgraph HPC\n  sim --&gt; report[Render report]\n  end\n  end\n  deploy --&gt; sim[Large scale simulations]\n  report --&gt; publish\n  Local --&gt; ghr"
+  },
+  {
+    "objectID": "index.html#pipeline-management",
+    "href": "index.html#pipeline-management",
+    "title": "Building large-scale simulation pipelines using targets, Git and GitHub Actions",
+    "section": "Pipeline management",
+    "text": "Pipeline management\n\nAnalyzes pipeline graph\nSkips up-to-date steps\nOrchestrates the rest\nAutomatic saving of targets"
+  },
+  {
+    "objectID": "index.html#r-based",
+    "href": "index.html#r-based",
+    "title": "Building large-scale simulation pipelines using targets, Git and GitHub Actions",
+    "section": "R-based",
+    "text": "R-based\n# _targets.R\nlibrary(targets)\ntar_option_set(\n  packages = c(\"dplyr\", \"ggplot2\")\n)\n\nlist(\n  tar_target(\n    name = data_sim,\n    command = sim_data(reps = 100)\n  ),\n  tar_target(\n    name = model_fit,\n    command = fit_model(data_sim)\n  )\n)\nRun entire pipeline with:\ntargets::tar_make()"
+  },
+  {
+    "objectID": "index.html#parallelization-via-crew",
+    "href": "index.html#parallelization-via-crew",
+    "title": "Building large-scale simulation pipelines using targets, Git and GitHub Actions",
+    "section": "Parallelization via {crew}",
+    "text": "Parallelization via {crew}\n# _targets.R\nlibrary(crew)\ntar_option_set(controller = crew_controller_local(workers = 30))\n\nDynamic branching\n\n{tarchetypes}\n\nDistributed computing:\n\nLocal\nSGE\nSLURM\nAWS Batch"
+  },
+  {
+    "objectID": "index.html#seamless-testing-deployment-workflow-via-config",
+    "href": "index.html#seamless-testing-deployment-workflow-via-config",
+    "title": "Building large-scale simulation pipelines using targets, Git and GitHub Actions",
+    "section": "Seamless testing-deployment workflow via {config}",
+    "text": "Seamless testing-deployment workflow via {config}\nconfig.yaml\ndefault:\n  sims: 100\n  workers: 2\ndeployment:\n  sims: 10000\n  workers: 30\n_targets.R\nn_sims &lt;- config::get(\"sims\")\nn_workers &lt;- config::get(\"workers\")\ntar_option_set(crew_controller_local(workers = n_workers))\nlist(\n  tar_target(data_sim, sim_data(reps = n_sims))\n)"
+  },
+  {
+    "objectID": "index.html#cloud-computing-platform",
+    "href": "index.html#cloud-computing-platform",
+    "title": "Building large-scale simulation pipelines using targets, Git and GitHub Actions",
+    "section": "Cloud computing platform",
+    "text": "Cloud computing platform\n\nOn-demand AWS EC2 instances\nLaunch instance/cluster via API\nCustom Docker image\nAccess to S3 buckets for persistent storage\nChoose HPC scheduler: SLURM, SGE, Kubernetes\nLive pipeline logs"
+  },
+  {
+    "objectID": "index.html#install-all-pipeline-requirements",
+    "href": "index.html#install-all-pipeline-requirements",
+    "title": "Building large-scale simulation pipelines using targets, Git and GitHub Actions",
+    "section": "Install all pipeline requirements",
+    "text": "Install all pipeline requirements\nProduction environment:\n\nBase images: Rocker Project\nSystem dependencies\nR version\nR packages"
+  },
+  {
+    "objectID": "index.html#what-are-github-actions",
+    "href": "index.html#what-are-github-actions",
+    "title": "Building large-scale simulation pipelines using targets, Git and GitHub Actions",
+    "section": "What are GitHub Actions?",
+    "text": "What are GitHub Actions?\n\nWorkflow automation: CI/CD\nRunners:\n\nGitHub-shared\nSelf-hosted\n\nTraceability\nCollaboration"
+  },
+  {
+    "objectID": "index.html#before-cicd",
+    "href": "index.html#before-cicd",
+    "title": "Building large-scale simulation pipelines using targets, Git and GitHub Actions",
+    "section": "Before CI/CD",
+    "text": "Before CI/CD\n\nManually moving files\nWorking in ineffient mounted folders\nRunning costly cloud instance for long periods of time (mostly iddle)\nInteractive testing in the command line\nNon-traceability of results"
+  },
+  {
+    "objectID": "index.html#after-cicd",
+    "href": "index.html#after-cicd",
+    "title": "Building large-scale simulation pipelines using targets, Git and GitHub Actions",
+    "section": "After CI/CD",
+    "text": "After CI/CD\n\n\nLocal development:\n\nFree\nOffline\nYour development environment\n\nDesktop IDE\nGit client\n\nInteractive testing\n\n\nAutomated pipeline deployment:\n\nNo manual file movement\nTraceable\nEfficient use of costly cloud computing"
+  },
+  {
+    "objectID": "index.html#build-image",
+    "href": "index.html#build-image",
+    "title": "Building large-scale simulation pipelines using targets, Git and GitHub Actions",
+    "section": "Build image",
+    "text": "Build image\n\nTrigger workflow only when changes in:\n\nDockerfile\nDependencies (e.g., renv.lock)\n\nBuild image in GitHub runners\nPush image to cloud computing registry"
+  },
+  {
+    "objectID": "index.html#deploy-pipeline",
+    "href": "index.html#deploy-pipeline",
+    "title": "Building large-scale simulation pipelines using targets, Git and GitHub Actions",
+    "section": "Deploy pipeline",
+    "text": "Deploy pipeline\n\nCustom trigger:\n\ngit push &lt;deploy-branch&gt;\ngit tag\n\nCustom GitHub Action:\n\nSpecify Docker image\nSpecify HPC specs\nAutomatated git checkout\nPipeline execution command"
+  },
+  {
+    "objectID": "index.html#deployment-example",
+    "href": "index.html#deployment-example",
+    "title": "Building large-scale simulation pipelines using targets, Git and GitHub Actions",
+    "section": "Deployment example",
+    "text": "Deployment example\nname: Deploy pipeline\non:\n  push:\n    branches: deploy\njobs:\n  deploy-pipeline:\n    runs-on: self-hosted\n    steps:\n      - name: Run pipeline\n        uses: org/custom-github-action/run-pipeline@main\n        with:\n          token: ${{ secrets.API_TOKEN }}\n          docker-image: user/custom-docker-image:latest\n          instance-type: r6i.32xlarge\n          command: sh _deploy.sh # targets::tar_make()"
+  },
+  {
+    "objectID": "index.html#publish-results",
+    "href": "index.html#publish-results",
+    "title": "Building large-scale simulation pipelines using targets, Git and GitHub Actions",
+    "section": "Publish results",
+    "text": "Publish results\nAfter deployment workflow:\n\ntargets pipeline includes Quarto/RMarkdown documents reporting results\n\ntarchetypes::tar_quarto(report, \"report.qmd\")\n\nPublish rendered HTML to GitHub Pages/Posit Connect\nSee results\nShare with collaborators"
+  }
+]
