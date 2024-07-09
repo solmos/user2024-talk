@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="index_files/libs/clipboard/clipboard.min.js"></script>
-<script src="index_files/libs/quarto-html/tabby.min.js"></script>
-<script src="index_files/libs/quarto-html/popper.min.js"></script>
-<script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
-<link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="index_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="index_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="index_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<link href="index_files/libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="index_files/libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-html/tabby.min.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.4.554">
 
   <meta name="author" content="Sergio Olmos">
@@ -18,8 +18,8 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="index_files/libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="index_files/libs/revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/reveal.css">
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -98,11 +98,11 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto.css">
-  <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="index_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto.css">
+  <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
   .callout {
@@ -389,9 +389,9 @@
     }
   </style>
   <meta name="mermaid-theme" content="default">
-  <script src="index_files/libs/quarto-diagram/mermaid.min.js"></script>
-  <script src="index_files/libs/quarto-diagram/mermaid-init.js"></script>
-  <link href="index_files/libs/quarto-diagram/mermaid.css" rel="stylesheet">
+  <script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+  <script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+  <link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -488,30 +488,30 @@ Sergio Olmos
 <img data-src="targets-pipeline-simple.png" class="r-stretch"></section>
 <section id="r-based" class="slide level2">
 <h2>R-based</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="co"># _targets.R</span></span>
-<span id="cb1-2"><a href=""></a><span class="fu">library</span>(targets)</span>
-<span id="cb1-3"><a href=""></a><span class="fu">tar_option_set</span>(</span>
-<span id="cb1-4"><a href=""></a>  <span class="at">packages =</span> <span class="fu">c</span>(<span class="st">"dplyr"</span>, <span class="st">"ggplot2"</span>)</span>
-<span id="cb1-5"><a href=""></a>)</span>
-<span id="cb1-6"><a href=""></a></span>
-<span id="cb1-7"><a href=""></a><span class="fu">list</span>(</span>
-<span id="cb1-8"><a href=""></a>  <span class="fu">tar_target</span>(</span>
-<span id="cb1-9"><a href=""></a>    <span class="at">name =</span> data_sim,</span>
-<span id="cb1-10"><a href=""></a>    <span class="at">command =</span> <span class="fu">sim_data</span>(<span class="at">reps =</span> <span class="dv">100</span>)</span>
-<span id="cb1-11"><a href=""></a>  ),</span>
-<span id="cb1-12"><a href=""></a>  <span class="fu">tar_target</span>(</span>
-<span id="cb1-13"><a href=""></a>    <span class="at">name =</span> model_fit,</span>
-<span id="cb1-14"><a href=""></a>    <span class="at">command =</span> <span class="fu">fit_model</span>(data_sim)</span>
-<span id="cb1-15"><a href=""></a>  )</span>
-<span id="cb1-16"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="co"># _targets.R</span></span>
+<span id="cb1-2"><a></a><span class="fu">library</span>(targets)</span>
+<span id="cb1-3"><a></a><span class="fu">tar_option_set</span>(</span>
+<span id="cb1-4"><a></a>  <span class="at">packages =</span> <span class="fu">c</span>(<span class="st">"dplyr"</span>, <span class="st">"ggplot2"</span>)</span>
+<span id="cb1-5"><a></a>)</span>
+<span id="cb1-6"><a></a></span>
+<span id="cb1-7"><a></a><span class="fu">list</span>(</span>
+<span id="cb1-8"><a></a>  <span class="fu">tar_target</span>(</span>
+<span id="cb1-9"><a></a>    <span class="at">name =</span> data_sim,</span>
+<span id="cb1-10"><a></a>    <span class="at">command =</span> <span class="fu">sim_data</span>(<span class="at">reps =</span> <span class="dv">100</span>)</span>
+<span id="cb1-11"><a></a>  ),</span>
+<span id="cb1-12"><a></a>  <span class="fu">tar_target</span>(</span>
+<span id="cb1-13"><a></a>    <span class="at">name =</span> model_fit,</span>
+<span id="cb1-14"><a></a>    <span class="at">command =</span> <span class="fu">fit_model</span>(data_sim)</span>
+<span id="cb1-15"><a></a>  )</span>
+<span id="cb1-16"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Run entire pipeline with:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a>targets<span class="sc">::</span><span class="fu">tar_make</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>targets<span class="sc">::</span><span class="fu">tar_make</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="parallelization-via-crew" class="slide level2">
 <h2>Parallelization via {crew}</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="co"># _targets.R</span></span>
-<span id="cb3-2"><a href=""></a><span class="fu">library</span>(crew)</span>
-<span id="cb3-3"><a href=""></a><span class="fu">tar_option_set</span>(<span class="at">controller =</span> <span class="fu">crew_controller_local</span>(<span class="at">workers =</span> <span class="dv">30</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="co"># _targets.R</span></span>
+<span id="cb3-2"><a></a><span class="fu">library</span>(crew)</span>
+<span id="cb3-3"><a></a><span class="fu">tar_option_set</span>(<span class="at">controller =</span> <span class="fu">crew_controller_local</span>(<span class="at">workers =</span> <span class="dv">30</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Dynamic branching
 <ul>
@@ -530,19 +530,19 @@ Sergio Olmos
 <section id="seamless-testing-deployment-workflow-via-config" class="slide level2">
 <h2>Seamless testing-deployment workflow via {config}</h2>
 <p><code>config.yaml</code></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href=""></a><span class="fu">default</span><span class="kw">:</span></span>
-<span id="cb4-2"><a href=""></a><span class="at">  </span><span class="fu">sims</span><span class="kw">:</span><span class="at"> </span><span class="dv">100</span></span>
-<span id="cb4-3"><a href=""></a><span class="at">  </span><span class="fu">workers</span><span class="kw">:</span><span class="at"> </span><span class="dv">2</span></span>
-<span id="cb4-4"><a href=""></a><span class="fu">deployment</span><span class="kw">:</span></span>
-<span id="cb4-5"><a href=""></a><span class="at">  </span><span class="fu">sims</span><span class="kw">:</span><span class="at"> </span><span class="dv">10000</span></span>
-<span id="cb4-6"><a href=""></a><span class="at">  </span><span class="fu">workers</span><span class="kw">:</span><span class="at"> </span><span class="dv">30</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a></a><span class="fu">default</span><span class="kw">:</span></span>
+<span id="cb4-2"><a></a><span class="at">  </span><span class="fu">sims</span><span class="kw">:</span><span class="at"> </span><span class="dv">100</span></span>
+<span id="cb4-3"><a></a><span class="at">  </span><span class="fu">workers</span><span class="kw">:</span><span class="at"> </span><span class="dv">2</span></span>
+<span id="cb4-4"><a></a><span class="fu">deployment</span><span class="kw">:</span></span>
+<span id="cb4-5"><a></a><span class="at">  </span><span class="fu">sims</span><span class="kw">:</span><span class="at"> </span><span class="dv">10000</span></span>
+<span id="cb4-6"><a></a><span class="at">  </span><span class="fu">workers</span><span class="kw">:</span><span class="at"> </span><span class="dv">30</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><code>_targets.R</code></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a>n_sims <span class="ot">&lt;-</span> config<span class="sc">::</span><span class="fu">get</span>(<span class="st">"sims"</span>)</span>
-<span id="cb5-2"><a href=""></a>n_workers <span class="ot">&lt;-</span> config<span class="sc">::</span><span class="fu">get</span>(<span class="st">"workers"</span>)</span>
-<span id="cb5-3"><a href=""></a><span class="fu">tar_option_set</span>(<span class="fu">crew_controller_local</span>(<span class="at">workers =</span> n_workers))</span>
-<span id="cb5-4"><a href=""></a><span class="fu">list</span>(</span>
-<span id="cb5-5"><a href=""></a>  <span class="fu">tar_target</span>(data_sim, <span class="fu">sim_data</span>(<span class="at">reps =</span> n_sims))</span>
-<span id="cb5-6"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>n_sims <span class="ot">&lt;-</span> config<span class="sc">::</span><span class="fu">get</span>(<span class="st">"sims"</span>)</span>
+<span id="cb5-2"><a></a>n_workers <span class="ot">&lt;-</span> config<span class="sc">::</span><span class="fu">get</span>(<span class="st">"workers"</span>)</span>
+<span id="cb5-3"><a></a><span class="fu">tar_option_set</span>(<span class="fu">crew_controller_local</span>(<span class="at">workers =</span> n_workers))</span>
+<span id="cb5-4"><a></a><span class="fu">list</span>(</span>
+<span id="cb5-5"><a></a>  <span class="fu">tar_target</span>(data_sim, <span class="fu">sim_data</span>(<span class="at">reps =</span> n_sims))</span>
+<span id="cb5-6"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section></section>
 <section>
 <section id="cloud-computing" class="title-slide slide level1 center">
@@ -664,21 +664,21 @@ Sergio Olmos
 </section>
 <section id="deployment-example" class="slide level2">
 <h2>Deployment example</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a href=""></a><span class="fu">name</span><span class="kw">:</span><span class="at"> Deploy pipeline</span></span>
-<span id="cb6-2"><a href=""></a><span class="fu">on</span><span class="kw">:</span></span>
-<span id="cb6-3"><a href=""></a><span class="at">  </span><span class="fu">push</span><span class="kw">:</span></span>
-<span id="cb6-4"><a href=""></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> deploy</span></span>
-<span id="cb6-5"><a href=""></a><span class="fu">jobs</span><span class="kw">:</span></span>
-<span id="cb6-6"><a href=""></a><span class="at">  </span><span class="fu">deploy-pipeline</span><span class="kw">:</span></span>
-<span id="cb6-7"><a href=""></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> self-hosted</span></span>
-<span id="cb6-8"><a href=""></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
-<span id="cb6-9"><a href=""></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Run pipeline</span></span>
-<span id="cb6-10"><a href=""></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> org/custom-github-action/run-pipeline@main</span></span>
-<span id="cb6-11"><a href=""></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
-<span id="cb6-12"><a href=""></a><span class="at">          </span><span class="fu">token</span><span class="kw">:</span><span class="at"> ${{ secrets.API_TOKEN }}</span></span>
-<span id="cb6-13"><a href=""></a><span class="at">          </span><span class="fu">docker-image</span><span class="kw">:</span><span class="at"> user/custom-docker-image:latest</span></span>
-<span id="cb6-14"><a href=""></a><span class="at">          </span><span class="fu">instance-type</span><span class="kw">:</span><span class="at"> r6i.32xlarge</span></span>
-<span id="cb6-15"><a href=""></a><span class="at">          </span><span class="fu">command</span><span class="kw">:</span><span class="at"> sh _deploy.sh</span><span class="co"> # targets::tar_make()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a></a><span class="fu">name</span><span class="kw">:</span><span class="at"> Deploy pipeline</span></span>
+<span id="cb6-2"><a></a><span class="fu">on</span><span class="kw">:</span></span>
+<span id="cb6-3"><a></a><span class="at">  </span><span class="fu">push</span><span class="kw">:</span></span>
+<span id="cb6-4"><a></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> deploy</span></span>
+<span id="cb6-5"><a></a><span class="fu">jobs</span><span class="kw">:</span></span>
+<span id="cb6-6"><a></a><span class="at">  </span><span class="fu">deploy-pipeline</span><span class="kw">:</span></span>
+<span id="cb6-7"><a></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> self-hosted</span></span>
+<span id="cb6-8"><a></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb6-9"><a></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Run pipeline</span></span>
+<span id="cb6-10"><a></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> org/custom-github-action/run-pipeline@main</span></span>
+<span id="cb6-11"><a></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb6-12"><a></a><span class="at">          </span><span class="fu">token</span><span class="kw">:</span><span class="at"> ${{ secrets.API_TOKEN }}</span></span>
+<span id="cb6-13"><a></a><span class="at">          </span><span class="fu">docker-image</span><span class="kw">:</span><span class="at"> user/custom-docker-image:latest</span></span>
+<span id="cb6-14"><a></a><span class="at">          </span><span class="fu">instance-type</span><span class="kw">:</span><span class="at"> r6i.32xlarge</span></span>
+<span id="cb6-15"><a></a><span class="at">          </span><span class="fu">command</span><span class="kw">:</span><span class="at"> sh _deploy.sh</span><span class="co"> # targets::tar_make()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="publish-results" class="slide level2">
 <h2>Publish results</h2>
@@ -686,7 +686,7 @@ Sergio Olmos
 <ul>
 <li>targets pipeline includes Quarto/RMarkdown documents reporting results</li>
 </ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a>tarchetypes<span class="sc">::</span><span class="fu">tar_quarto</span>(report, <span class="st">"report.qmd"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>tarchetypes<span class="sc">::</span><span class="fu">tar_quarto</span>(report, <span class="st">"report.qmd"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Publish rendered HTML to GitHub Pages/Posit Connect</li>
 <li>See results</li>
@@ -702,6 +702,7 @@ Sergio Olmos
 <div class="footer">
 <p>Slides: <a href="https://github.com/solmos/user2024-talk"><code>https://github.com/solmos/user2024-talk</code></a></p>
 </div>
+
 <div class="quarto-auto-generated-content">
 <p><img src="sanofi.svg" class="slide-logo"></p>
 <div class="footer footer-default">
@@ -713,19 +714,19 @@ Sergio Olmos
   </div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="index_files/libs/revealjs/dist/reveal.js"></script>
+  <script src="site_libs/revealjs/dist/reveal.js"></script>
   <!-- reveal.js plugins -->
-  <script src="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="index_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="index_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="index_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  <script src="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="site_libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
-  <script src="index_files/libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="index_files/libs/revealjs/plugin/search/search.js"></script>
-  <script src="index_files/libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="index_files/libs/revealjs/plugin/math/math.js"></script>
+  <script src="site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="site_libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>
