@@ -11,9 +11,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup Quarto
-        uses: quarto-dev/actions/setup@v2
+        uses: quarto-dev/quarto-actions/setup@v2
       - name: Publish Quarto
-        uses: quarto-dev/actions/publish@v2
+        uses: quarto-dev/quarto-actions/publish@v2
         with:
           target: gh-pages
         env:
