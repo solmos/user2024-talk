@@ -9,14 +9,14 @@ permissions:
   pages: write
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Setup Quarto
-        uses: quarto-dev/actions/setup@v2
+        uses: quarto-dev/quarto-actions/setup@v2
       - name: Publish Quarto
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        uses: quarto-dev/actions/publish@v2
+        uses: quarto-dev/quarto-actions/publish@v2
         with:
           target: gh-pages
