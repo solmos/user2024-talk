@@ -4,6 +4,10 @@ on:
     branches:
       - main
 
+permissions:
+  pages: write
+  actions: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -13,8 +17,8 @@ jobs:
       - name: Setup Quarto
         uses: quarto-dev/quarto-actions/setup@v2
       - name: Publish Quarto
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         uses: quarto-dev/quarto-actions/publish@v2
         with:
           target: gh-pages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
