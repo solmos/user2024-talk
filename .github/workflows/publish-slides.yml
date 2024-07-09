@@ -4,21 +4,22 @@ on:
     branches:
       - main
 
-permissions:
-  pages: write
-  actions: write
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup Quarto
-        uses: quarto-dev/quarto-actions/setup@v2
-      - name: Publish Quarto
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        uses: quarto-dev/quarto-actions/publish@v2
-        with:
-          target: gh-pages
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
