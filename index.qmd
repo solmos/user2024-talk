@@ -284,7 +284,7 @@ tarchetypes::tar_quarto(report, "report.qmd")
 - See results
 - Share with collaborators
 
-# Questions? {.smaller}
+# Thanks! Questions? {.smaller}
 
 {{< fa solid envelope >}} [`sergio.olmos.pardo@gmail.com`](mailto:sergio.olmos.pardo@gmail.com)
 
