@@ -155,9 +155,7 @@ list(
 
 ## Cloud computing platform
 
-- On-demand AWS EC2 instances
-
-- Launch instance/cluster via API
+- On-demand AWS EC2 instances via API
 
 - Custom Docker image
 
@@ -230,7 +228,7 @@ Production environment:
 
 ::::
 
-## Build image
+## Step 1: Build image
 
 - Trigger workflow only when changes in:
   - `Dockerfile`
@@ -240,7 +238,7 @@ Production environment:
 
 - Push image to cloud computing registry
 
-## Deploy pipeline
+## Step 2: Deploy pipeline
 
 - Custom trigger:
   - `git push <deploy-branch>`
@@ -272,7 +270,7 @@ jobs:
           command: sh _deploy.sh # targets::tar_make()
 ```
 
-## Publish results
+## Step 3: Publish results
 
 After deployment workflow:
 
