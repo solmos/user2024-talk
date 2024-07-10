@@ -551,8 +551,7 @@ Sergio Olmos
 <section id="cloud-computing-platform" class="slide level2">
 <h2>Cloud computing platform</h2>
 <ul>
-<li><p>On-demand AWS EC2 instances</p></li>
-<li><p>Launch instance/cluster via API</p></li>
+<li><p>On-demand AWS EC2 instances via API</p></li>
 <li><p>Custom Docker image</p></li>
 <li><p>Access to S3 buckets for persistent storage</p></li>
 <li><p>Choose HPC scheduler: SLURM, SGE, Kubernetes</p></li>
@@ -631,8 +630,8 @@ Sergio Olmos
 </ul>
 </div></div>
 </section>
-<section id="build-image" class="slide level2">
-<h2>Build image</h2>
+<section id="step-1-build-image" class="slide level2">
+<h2>Step 1: Build image</h2>
 <ul>
 <li><p>Trigger workflow only when changes in:</p>
 <ul>
@@ -643,8 +642,8 @@ Sergio Olmos
 <li><p>Push image to cloud computing registry</p></li>
 </ul>
 </section>
-<section id="deploy-pipeline" class="slide level2">
-<h2>Deploy pipeline</h2>
+<section id="step-2-deploy-pipeline" class="slide level2">
+<h2>Step 2: Deploy pipeline</h2>
 <ul>
 <li>Custom trigger:
 <ul>
@@ -678,8 +677,8 @@ Sergio Olmos
 <span id="cb6-14"><a></a><span class="at">          </span><span class="fu">instance-type</span><span class="kw">:</span><span class="at"> r6i.32xlarge</span></span>
 <span id="cb6-15"><a></a><span class="at">          </span><span class="fu">command</span><span class="kw">:</span><span class="at"> sh _deploy.sh</span><span class="co"> # targets::tar_make()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="publish-results" class="slide level2">
-<h2>Publish results</h2>
+<section id="step-3-publish-results" class="slide level2">
+<h2>Step 3: Publish results</h2>
 <p>After deployment workflow:</p>
 <ul>
 <li>targets pipeline includes Quarto/RMarkdown documents reporting results</li>

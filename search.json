@@ -53,7 +53,7 @@
     "href": "index.html#cloud-computing-platform",
     "title": "Building large-scale simulation pipelines using targets, Git and GitHub Actions",
     "section": "Cloud computing platform",
-    "text": "Cloud computing platform\n\nOn-demand AWS EC2 instances\nLaunch instance/cluster via API\nCustom Docker image\nAccess to S3 buckets for persistent storage\nChoose HPC scheduler: SLURM, SGE, Kubernetes\nLive pipeline logs"
+    "text": "Cloud computing platform\n\nOn-demand AWS EC2 instances via API\nCustom Docker image\nAccess to S3 buckets for persistent storage\nChoose HPC scheduler: SLURM, SGE, Kubernetes\nLive pipeline logs"
   },
   {
     "objectID": "index.html#install-all-pipeline-requirements",
@@ -84,18 +84,18 @@
     "text": "After CI/CD\n\n\nLocal development:\n\nFree\nOffline\nYour development environment\n\nDesktop IDE\nGit client\n\nInteractive testing\n\n\nAutomated pipeline deployment:\n\nNo manual file movement\nTraceable\nEfficient use of costly cloud computing"
   },
   {
-    "objectID": "index.html#build-image",
-    "href": "index.html#build-image",
+    "objectID": "index.html#step-1-build-image",
+    "href": "index.html#step-1-build-image",
     "title": "Building large-scale simulation pipelines using targets, Git and GitHub Actions",
-    "section": "Build image",
-    "text": "Build image\n\nTrigger workflow only when changes in:\n\nDockerfile\nDependencies (e.g., renv.lock)\n\nBuild image in GitHub runners\nPush image to cloud computing registry"
+    "section": "Step 1: Build image",
+    "text": "Step 1: Build image\n\nTrigger workflow only when changes in:\n\nDockerfile\nDependencies (e.g., renv.lock)\n\nBuild image in GitHub runners\nPush image to cloud computing registry"
   },
   {
-    "objectID": "index.html#deploy-pipeline",
-    "href": "index.html#deploy-pipeline",
+    "objectID": "index.html#step-2-deploy-pipeline",
+    "href": "index.html#step-2-deploy-pipeline",
     "title": "Building large-scale simulation pipelines using targets, Git and GitHub Actions",
-    "section": "Deploy pipeline",
-    "text": "Deploy pipeline\n\nCustom trigger:\n\ngit push &lt;deploy-branch&gt;\ngit tag\n\nCustom GitHub Action:\n\nSpecify Docker image\nSpecify HPC specs\nAutomatated git checkout\nPipeline execution command"
+    "section": "Step 2: Deploy pipeline",
+    "text": "Step 2: Deploy pipeline\n\nCustom trigger:\n\ngit push &lt;deploy-branch&gt;\ngit tag\n\nCustom GitHub Action:\n\nSpecify Docker image\nSpecify HPC specs\nAutomatated git checkout\nPipeline execution command"
   },
   {
     "objectID": "index.html#deployment-example",
@@ -105,10 +105,10 @@
     "text": "Deployment example\nname: Deploy pipeline\non:\n  push:\n    branches: deploy\njobs:\n  deploy-pipeline:\n    runs-on: self-hosted\n    steps:\n      - name: Run pipeline\n        uses: org/custom-github-action/run-pipeline@main\n        with:\n          token: ${{ secrets.API_TOKEN }}\n          docker-image: user/custom-docker-image:latest\n          instance-type: r6i.32xlarge\n          command: sh _deploy.sh # targets::tar_make()"
   },
   {
-    "objectID": "index.html#publish-results",
-    "href": "index.html#publish-results",
+    "objectID": "index.html#step-3-publish-results",
+    "href": "index.html#step-3-publish-results",
     "title": "Building large-scale simulation pipelines using targets, Git and GitHub Actions",
-    "section": "Publish results",
-    "text": "Publish results\nAfter deployment workflow:\n\ntargets pipeline includes Quarto/RMarkdown documents reporting results\n\ntarchetypes::tar_quarto(report, \"report.qmd\")\n\nPublish rendered HTML to GitHub Pages/Posit Connect\nSee results\nShare with collaborators"
+    "section": "Step 3: Publish results",
+    "text": "Step 3: Publish results\nAfter deployment workflow:\n\ntargets pipeline includes Quarto/RMarkdown documents reporting results\n\ntarchetypes::tar_quarto(report, \"report.qmd\")\n\nPublish rendered HTML to GitHub Pages/Posit Connect\nSee results\nShare with collaborators"
   }
 ]
